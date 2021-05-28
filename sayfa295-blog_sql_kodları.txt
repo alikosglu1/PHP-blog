@@ -1,0 +1,69 @@
+Blog tablomuzu oluþturup, test amaçlý 3 kayýt ekleyelim. SQL kodlarýmýz aþaðýdaki gibidir.
+
+
+CREATE TABLE blog(
+  blog_id  int(11) NOT NULL AUTO_INCREMENT,
+  baslik  varchar(300) NOT NULL,
+  yazi  text NOT NULL,
+  tarih  timestamp DEFAULT CURRENT_TIMESTAMP,
+  uye_id  int DEFAULT 1,
+    PRIMARY KEY ( blog_id )
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO blog(baslik,yazi)
+VALUES('ilk blog baþlýðým','Bu birinci içerik yazým'),
+      ('ikinci blog baþlýðým','Bu ikinci içerik yazým'),
+      ('Üçüncü blog baþlýðým','Bu üçüncü içerik yazým');
+
+
+
+Yorum tablomuzu oluþturup, test amaçlý 1 kayýt ekleyelim. SQL kodlarýmýz aþaðýdaki gibidir.
+
+
+
+CREATE TABLE yorum(
+  yorum_id  int(11) NOT NULL AUTO_INCREMENT,
+  mesaj  text NOT NULL,
+  yazan varchar(80) DEFAULT 'anonim',
+  tarih  timestamp DEFAULT CURRENT_TIMESTAMP,
+  blog_id  int NOT NULL,
+    PRIMARY KEY ( yorum_id )
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO yorum(mesaj,blog_id)
+VALUES('ilk mesajý yaptýk',1);
+
+
+
+
+
+Üye tablomuz aþaðýdaki gibidir.
+
+
+
+Uye tablosu
+CREATE TABLE uye (
+  uye_id INT(11) NOT NULL AUTO_INCREMENT,
+  email VARCHAR(96) NOT NULL,
+  sifre VARCHAR(40) NOT NULL,
+  ad VARCHAr(32) NOT NULL,
+  durum INT(1) NOT NULL DEFAULT '2',
+  PRIMARY KEY (uye_id),
+  UNIQUE KEY email (email)
+) DEFAULT CHARSET=utf8;
+
+INSERT INTO uye(email, sifre, ad, durum) 
+VALUES ('test1@test.com', MD5('1234'), 'Rýza ÇELÝK', '1'), 
+       ('test2@test.com', MD5('1234'), 'Ceren GEZER', '2');
+
+
+
+
+
+
+
+
+
+
+
+
